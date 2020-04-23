@@ -4,8 +4,9 @@ import org.springframework.security.oauth2.client.registration.ClientRegistratio
 import org.springframework.security.oauth2.core.AuthorizationGrantType;
 import org.springframework.security.oauth2.core.ClientAuthenticationMethod;
 
-public enum CustomOAuth2Prover {
+public enum CustomOAuth2Provider {
     KAKAO {
+        @Override
         public ClientRegistration.Builder getBuilder(String registerationId) {
             ClientRegistration.Builder builder=getbBuilder(registerationId,ClientAuthenticationMethod.POST
                     ,DEFAULT_LOGIN_REDIRECT_URL);
@@ -21,13 +22,13 @@ public enum CustomOAuth2Prover {
 
     protected final ClientRegistration.Builder getbBuilder(String registrationId, ClientAuthenticationMethod method
             , String redirectUri) {
-         ClientRegistration.Builder builder=ClientRegistration.withRegistrationId(registrationId);
-         builder.clientAuthenticationMethod(method);
-         builder.authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE);
-         builder.redirectUriTemplate(redirectUri);
-         return builder;
+        ClientRegistration.Builder builder=ClientRegistration.withRegistrationId(registrationId);
+        builder.clientAuthenticationMethod(method);
+        builder.authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE);
+        builder.redirectUriTemplate(redirectUri);
+        return builder;
     }
     public abstract ClientRegistration.Builder getBuilder(String registrationId);
 
-    private static final String DEFAULT_LOGIN_REDIRECT_URL = "{baseUrl}/login/oauth2/code/{registrationID}";
+    private static final String DEFAULT_LOGIN_REDIRECT_URL = "{baseUrl}/login/oauth2/code/{registrationId}";
 }

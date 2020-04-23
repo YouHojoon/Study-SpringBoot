@@ -1,8 +1,7 @@
 package ac.kr.smu.config;
 
 import ac.kr.smu.domain.enums.SocialType;
-import ac.kr.smu.oauth.CustomOAuth2Prover;
-import org.springframework.beans.factory.annotation.Autowired;
+import ac.kr.smu.oauth.CustomOAuth2Provider;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.security.oauth2.client.OAuth2ClientProperties;
 import org.springframework.context.annotation.Bean;
@@ -44,7 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                                                                      @Value("${custom.oauth2.kakao.client-id}") String kakaoClientId) {
         List<ClientRegistration> registrations= oAuth2ClientProperties.getRegistration().keySet().stream().map(client ->
                 getregistration(oAuth2ClientProperties, client)).filter(Objects::nonNull).collect(Collectors.toList());
-        registrations.add(CustomOAuth2Prover.KAKAO.getBuilder("kakao").clientId(kakaoClientId)
+        registrations.add(CustomOAuth2Provider.KAKAO.getBuilder("kakao").clientId(kakaoClientId)
                 .clientSecret("test").jwkSetUri("test").build());
         return new InMemoryClientRegistrationRepository(registrations);
     }

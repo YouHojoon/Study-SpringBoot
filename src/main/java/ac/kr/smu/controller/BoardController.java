@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/board")
 public class BoardController {
+
     @Autowired
     BoardService boardService;
 
@@ -24,6 +25,6 @@ public class BoardController {
     @GetMapping("/list")
     public String list(@PageableDefault Pageable pageable, Model model){
         model.addAttribute("boardList", boardService.findBoardList(pageable));
-        return "board/list";
+        return "/board/list";
     }
 }

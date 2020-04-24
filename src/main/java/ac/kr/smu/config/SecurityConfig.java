@@ -21,17 +21,16 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-@Configuration
+
 @EnableWebSecurity
+@Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         CharacterEncodingFilter filter =  new CharacterEncodingFilter();
         http.authorizeRequests().antMatchers("/","/login/**","/css/**","/images/**","/js/**","/console/**","/oauth2/**")
-                .permitAll().antMatchers("/facebook").hasAuthority(SocialType.FACEBOOK.getRoleType())
-                .antMatchers("/google").hasAuthority(SocialType.GOOGLE.getRoleType()).antMatchers("/kakao")
-                .hasAuthority(SocialType.KAKAO.getRoleType()).anyRequest().authenticated()
+                .permitAll().anyRequest().authenticated()
                 .and().oauth2Login().defaultSuccessUrl("/loginSuccess").failureUrl("/loginFailure")
                 .and().headers().frameOptions().disable()
                 .and().exceptionHandling().authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/login"))
@@ -40,14 +39,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
     @Bean
     public ClientRegistrationRepository clientRegistrationRepository(OAuth2ClientProperties oAuth2ClientProperties,
-                                                                     @Value("${custom.oauth2.kakao.client-id}") String kakaoClientId) {
+                                                                     @Value("${custom.oauth2.kakao.client-id}") String kakaoClientId,
+                                                                     @Value("${custom.oauth2.kakao.client-secret}") String kakaoClientSecret) {
         List<ClientRegistration> registrations= oAuth2ClientProperties.getRegistration().keySet().stream().map(client ->
-                getregistration(oAuth2ClientProperties, client)).filter(Objects::nonNull).collect(Collectors.toList());
+                getRegistration(oAuth2ClientProperties, client)).filter(Objects::nonNull).collect(Collectors.toList());
         registrations.add(CustomOAuth2Provider.KAKAO.getBuilder("kakao").clientId(kakaoClientId)
-                .clientSecret("test").jwkSetUri("test").build());
+                .clientSecret(kakaoClientSecret).jwkSetUri("test").build());
         return new InMemoryClientRegistrationRepository(registrations);
     }
-    private ClientRegistration getregistration(OAuth2ClientProperties clientProperties, String client){
+
+    private ClientRegistration getRegistration(OAuth2ClientProperties clientProperties, String client){
         if("google".equals(client)){
             OAuth2ClientProperties.Registration registration = clientProperties.getRegistration().get("google");
             return CommonOAuth2Provider.GOOGLE.getBuilder(client).clientId(registration.getClientId())

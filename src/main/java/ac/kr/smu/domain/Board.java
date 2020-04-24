@@ -6,13 +6,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor
 @Entity
 @Table
-public class Board {
+public class Board implements Serializable {
 
     @Id
     @Column
@@ -51,5 +52,17 @@ public class Board {
         this.createdDate = createdDate;
         this.updatedDate = updatedDate;
         this.user = user;
+    }
+    public void setCreatedDateNow(){
+        this.createdDate=LocalDateTime.now();
+    }
+    public void setUpdatedDateNow(){
+        this.updatedDate=LocalDateTime.now();
+    }
+    public void update(Board board){
+        this.title= board.getTitle();
+        this.subTitle=board.getSubTitle();
+        this.content=board.getContent();
+        this.updatedDate=LocalDateTime.now();
     }
 }

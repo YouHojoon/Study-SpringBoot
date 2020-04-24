@@ -1,5 +1,6 @@
 package ac.kr.smu.controller;
 
+
 import ac.kr.smu.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletResponse;
+
 @Controller
 @RequestMapping("/board")
 public class BoardController {
@@ -18,7 +21,7 @@ public class BoardController {
     BoardService boardService;
 
     @GetMapping({"","/"})
-    public String board(@RequestParam(value = "idx",defaultValue = "0") Long idx, Model model){
+    public String board(@RequestParam(value = "idx", defaultValue = "0") Long idx, Model model){
         model.addAttribute("board",boardService.findBoardByIdx(idx));
         return "/board/form";
     }
@@ -26,5 +29,9 @@ public class BoardController {
     public String list(@PageableDefault Pageable pageable, Model model){
         model.addAttribute("boardList", boardService.findBoardList(pageable));
         return "/board/list";
+    }
+    @GetMapping("/form")
+    public String register(HttpServletResponse response){
+        return "/board/form";
     }
 }

@@ -3,6 +3,7 @@ package ac.kr.smu.resolver;
 import ac.kr.smu.annotation.SocialUser;
 import ac.kr.smu.domain.User;
 import ac.kr.smu.domain.enums.SocialType;
+import ac.kr.smu.repository.BoardRepository;
 import ac.kr.smu.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,10 +32,11 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
 
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    BoardRepository boardRepository;
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {//파라미터 정의
-        log.info("성공");
         return parameter.getParameterAnnotation(SocialUser.class) != null && parameter.getParameterType().equals(User.class);
     }
     /*
@@ -88,10 +90,8 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
         카카오를 위한 빌더
      */
     private User getKakaoUser(Map<String, Object> map) {
-        log.info("여기");
         HashMap<String, String> propertyMap = (HashMap<String, String>) map.get("properties");
-        return User.builder().name(propertyMap.get("nickname")).email(String.valueOf(map.get("account_email")))
-                .principal(String.valueOf(map.get("id"))).socialType(SocialType.KAKAO).createdDate(LocalDateTime.now()).build();
+        return User.builder().name(propertyMap.get("nickname")).principal(String.valueOf(map.get("id"))).socialType(SocialType.KAKAO).createdDate(LocalDateTime.now()).build();
     }
     /*
         권한이 있는지 확인

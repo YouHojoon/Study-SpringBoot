@@ -1,4 +1,4 @@
-package ac.kr.smu.domain.enums;
+package ac.kr.smu.rest.domain.enums;
 
 public enum BoardType {
     notice("공지사항"),free("자유게시판");

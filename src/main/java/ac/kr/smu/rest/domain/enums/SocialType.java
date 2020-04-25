@@ -1,4 +1,4 @@
-package ac.kr.smu.domain.enums;
+package ac.kr.smu.rest.domain.enums;
 
 public enum SocialType {
     FACEBOOK("facebook"),GOOGLE("google"), KAKAO("kakao");

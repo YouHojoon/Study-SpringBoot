@@ -1,5 +1,6 @@
 package ac.kr.smu.rest.domain;
 
+
 import ac.kr.smu.rest.domain.enums.BoardType;
 import lombok.Builder;
 import lombok.Getter;
@@ -63,5 +64,6 @@ public class Board implements Serializable {
         this.title= board.getTitle();
         this.subTitle=board.getSubTitle();
         this.content=board.getContent();
+        this.updatedDate=LocalDateTime.now();
     }
 }

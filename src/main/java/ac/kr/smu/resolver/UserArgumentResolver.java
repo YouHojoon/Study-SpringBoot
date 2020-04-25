@@ -2,7 +2,7 @@ package ac.kr.smu.resolver;
 
 import ac.kr.smu.annotation.SocialUser;
 import ac.kr.smu.domain.User;
-import ac.kr.smu.domain.enums.SocialType;
+import ac.kr.smu.rest.domain.enums.SocialType;
 import ac.kr.smu.repository.BoardRepository;
 import ac.kr.smu.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;

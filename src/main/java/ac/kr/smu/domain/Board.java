@@ -1,6 +1,6 @@
 package ac.kr.smu.domain;
 
-import ac.kr.smu.domain.enums.BoardType;
+import ac.kr.smu.rest.domain.enums.BoardType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

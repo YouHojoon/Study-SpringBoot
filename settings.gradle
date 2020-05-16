@@ -1,4 +1,5 @@
 rootProject.name = 'studyspringboot'
 include 'data-rest'
 include 'rest-web'
+include 'oauth2'
 

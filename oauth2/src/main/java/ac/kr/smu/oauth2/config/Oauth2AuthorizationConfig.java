@@ -36,9 +36,10 @@ public class Oauth2AuthorizationConfig extends AuthorizationServerConfigurerAdap
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        /* DB에 토큰 저장*/
+        /* DB에 토큰 저장
         endpoints.tokenStore(new JdbcTokenStore(dataSource)).userDetailsService(userDetailService);
-        /*endpoints.accessTokenConverter(jwtAccessTokenConverter()).userDetailsService(userDetailService);*/
+        */
+        endpoints.accessTokenConverter(jwtAccessTokenConverter()).userDetailsService(userDetailService);
     }
 
     @Override

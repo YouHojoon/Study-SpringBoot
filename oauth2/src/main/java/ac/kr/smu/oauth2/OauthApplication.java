@@ -1,4 +1,4 @@
-package ac.kr.smu;
+package ac.kr.smu.oauth2;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

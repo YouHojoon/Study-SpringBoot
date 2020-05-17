@@ -1,10 +1,8 @@
-package ac.kr.smu.config;
+package ac.kr.smu.oauth2.config;
 
-import ac.kr.smu.provider.CustomAuthenticationProvider;
+import ac.kr.smu.oauth2.provider.CustomAuthenticationProvider;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.CustomAutowireConfigurer;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;

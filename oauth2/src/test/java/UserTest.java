@@ -1,10 +1,8 @@
-import ac.kr.smu.OauthApplication;
-import ac.kr.smu.config.WebConfig;
-import ac.kr.smu.domain.User;
-import ac.kr.smu.repository.UserRepository;
+import ac.kr.smu.oauth2.OauthApplication;
+import ac.kr.smu.oauth2.domain.User;
+import ac.kr.smu.oauth2.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 

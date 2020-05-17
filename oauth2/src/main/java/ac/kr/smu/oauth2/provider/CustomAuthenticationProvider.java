@@ -1,7 +1,7 @@
-package ac.kr.smu.provider;
+package ac.kr.smu.oauth2.provider;
 
-import ac.kr.smu.domain.User;
-import ac.kr.smu.repository.UserRepository;
+import ac.kr.smu.oauth2.repository.UserRepository;
+import ac.kr.smu.oauth2.domain.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;

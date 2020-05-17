@@ -1,6 +1,6 @@
-package ac.kr.smu.config;
+package ac.kr.smu.oauth2.config;
 
-import ac.kr.smu.repository.UserRepository;
+import ac.kr.smu.oauth2.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

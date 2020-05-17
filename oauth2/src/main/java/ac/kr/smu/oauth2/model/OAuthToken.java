@@ -1,4 +1,4 @@
-package ac.kr.smu.model;
+package ac.kr.smu.oauth2.model;
 
 import lombok.Getter;
 import lombok.Setter;

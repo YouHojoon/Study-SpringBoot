@@ -1,6 +1,6 @@
-package ac.kr.smu.repository;
+package ac.kr.smu.oauth2.repository;
 
-import ac.kr.smu.domain.User;
+import ac.kr.smu.oauth2.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

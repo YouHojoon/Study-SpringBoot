@@ -2,7 +2,6 @@ package ac.kr.smu.service;
 
 import ac.kr.smu.domain.Board;
 import ac.kr.smu.repository.BoardRepository;
-import jdk.internal.org.jline.utils.Log;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

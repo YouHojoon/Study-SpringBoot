@@ -1,6 +1,6 @@
-package ac.kr.smu.controller;
+package ac.kr.smu.oauth2.controller;
 
-import ac.kr.smu.model.OAuthToken;
+import ac.kr.smu.oauth2.model.OAuthToken;
 import com.google.gson.Gson;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;

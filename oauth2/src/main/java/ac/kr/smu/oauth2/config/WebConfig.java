@@ -1,4 +1,4 @@
-package ac.kr.smu.config;
+package ac.kr.smu.oauth2.config;
 
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
@@ -10,8 +10,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-@EnableJpaRepositories(basePackages = "ac.kr.smu.repository")
-@EntityScan(basePackages = "ac.kr.smu.domain")
+@EnableJpaRepositories(basePackages = "ac.kr.smu.oauth2.repository")
+@EntityScan(basePackages = "ac.kr.smu.oauth2.domain")
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
     @Bean

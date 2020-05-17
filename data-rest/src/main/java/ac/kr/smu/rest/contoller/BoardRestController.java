@@ -1,7 +1,6 @@
 package ac.kr.smu.rest.contoller;
 
 import ac.kr.smu.rest.domain.Board;
-import ac.kr.smu.rest.domain.projection.UserOnlyContainName;
 import ac.kr.smu.rest.repository.BoardRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

@@ -1,17 +1,16 @@
-package ac.kr.smu.config;
+package ac.kr.smu.oauth2.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.actuate.endpoint.jmx.EndpointObjectNameFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
+import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 
@@ -29,12 +28,17 @@ public class Oauth2AuthorizationConfig extends AuthorizationServerConfigurerAdap
     private String signkey;
     @Autowired
     private CustomUserDetailService userDetailService;
+
+    @Override
+    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+        security.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()").allowFormAuthenticationForClients();
+    }
+
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        /* DB에 토큰 저장
-        endpoints.tokenStore(new JdbcTokenStore(dataSource));
-         */
-        endpoints.accessTokenConverter(jwtAccessTokenConverter()).userDetailsService(userDetailService);
+        /* DB에 토큰 저장*/
+        endpoints.tokenStore(new JdbcTokenStore(dataSource)).userDetailsService(userDetailService);
+        /*endpoints.accessTokenConverter(jwtAccessTokenConverter()).userDetailsService(userDetailService);*/
     }
 
     @Override

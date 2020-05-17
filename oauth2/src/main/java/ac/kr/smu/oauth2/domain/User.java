@@ -1,5 +1,6 @@
-package ac.kr.smu.domain;
+package ac.kr.smu.oauth2.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -29,6 +30,7 @@ public class User implements UserDetails {
     private String id;
 
     @Column
+    @JsonIgnore
     private String passwd;
 
     @Column
@@ -62,6 +64,7 @@ public class User implements UserDetails {
     }
 
     @Override
+    @JsonIgnore
     public String getPassword() {
         return this.passwd;
     }
